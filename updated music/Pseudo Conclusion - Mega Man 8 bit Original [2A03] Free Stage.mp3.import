@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Pseudo Conclusion - Mega Man 8 bit Original [2A03] Free Stage.mp3-79c5b383547b13c00814b7cd93a1b22b.mp3str"
+
+[deps]
+
+source_file="res://updated music/Pseudo Conclusion - Mega Man 8 bit Original [2A03] Free Stage.mp3"
+dest_files=[ "res://.import/Pseudo Conclusion - Mega Man 8 bit Original [2A03] Free Stage.mp3-79c5b383547b13c00814b7cd93a1b22b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

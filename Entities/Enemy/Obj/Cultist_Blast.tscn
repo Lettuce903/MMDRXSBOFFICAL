@@ -1,0 +1,52 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Entities/Enemy/Obj/MM2_Bullet.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Projectiles/Cultist_Blast.png" type="Texture" id=13]
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 13 )
+region = Rect2( 8, 8, 24, 16 )
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+length = 0.4
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0 ]
+}
+
+[node name="Bullet" instance=ExtResource( 1 )]
+sprite_preview_texture = SubResource( 3 )
+
+[node name="Sprite" parent="SpriteMain" index="0"]
+texture = ExtResource( 13 )
+hframes = 2
+
+[node name="BulletAnimation" type="AnimationPlayer" parent="SpriteMain/Sprite" index="0"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
+anims/RESET = SubResource( 2 )

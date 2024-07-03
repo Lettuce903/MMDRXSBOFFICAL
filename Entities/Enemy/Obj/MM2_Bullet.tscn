@@ -1,0 +1,156 @@
+[gd_scene load_steps=17 format=2]
+
+[ext_resource path="res://Entities/Enemy/Core/EnemyProjectileCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Sprites/Enemies/Enemy_TestBullet.png" type="Texture" id=2]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemSet/ItemSetData/ItemSetData.gd" type="Script" id=3]
+
+[sub_resource type="AtlasTexture" id=20]
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 8, 8 )
+
+[sub_resource type="Animation" id=14]
+length = 0.12
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.08
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "NoLongerDamage"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 3 )
+item = ""
+weight = 78
+quantity = 1
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 3 )
+item = "WeaponEnergySmall"
+weight = 25
+quantity = 1
+
+[sub_resource type="Resource" id=19]
+script = ExtResource( 3 )
+item = "LifeEnergySmall"
+weight = 15
+quantity = 1
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 3 )
+item = "WeaponEnergyLarge"
+weight = 5
+quantity = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 3 )
+item = "LifeEnergyLarge"
+weight = 4
+quantity = 1
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 3 )
+item = ""
+weight = 10
+quantity = 1
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 3, 3 )
+
+[sub_resource type="Animation" id=11]
+length = 0.06
+loop = true
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Bullet" instance=ExtResource( 1 )]
+sprite_preview_texture = SubResource( 20 )
+damage_area_nodes = [ NodePath("Area2D") ]
+
+[node name="BulletBehavior" parent="." index="0"]
+speed = 300.0
+
+[node name="Sprite" parent="SpriteMain" index="0"]
+texture = ExtResource( 2 )
+
+[node name="FlickerAnimationPlayer" parent="SpriteMain" index="1"]
+anims/Damage = SubResource( 14 )
+anims/Damage_Loop = SubResource( 15 )
+anims/NoLongerDamage = SubResource( 16 )
+
+[node name="PickupsDropSet" parent="." index="5"]
+items = [ SubResource( 17 ), SubResource( 18 ), SubResource( 19 ), SubResource( 8 ), SubResource( 9 ), SubResource( 13 ) ]
+
+[node name="Area2D" type="Area2D" parent="." index="6"]
+collision_layer = 16
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" index="0"]
+shape = SubResource( 1 )
+
+[node name="Ani" parent="DamageSprite" index="0"]
+anims/Flashing = SubResource( 11 )
+anims/StopFlashing = SubResource( 12 )

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Glass Alter - Mega Man 8 bit Original [2A03] Free Stage.mp3-11c0f36c4dc14d0b5db7aec2f3d7e815.mp3str"
+
+[deps]
+
+source_file="res://updated music/Glass Alter - Mega Man 8 bit Original [2A03] Free Stage.mp3"
+dest_files=[ "res://.import/Glass Alter - Mega Man 8 bit Original [2A03] Free Stage.mp3-11c0f36c4dc14d0b5db7aec2f3d7e815.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

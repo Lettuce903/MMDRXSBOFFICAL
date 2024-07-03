@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Levels/Core/Lv_Core.tscn" type="PackedScene" id=2]
+
+[node name="Level" instance=ExtResource( 2 )]
+
+[node name="Player" parent="Iterable" index="1"]
+position = Vector2( 208, 112 )
+
+[editable path="Camera2D"]

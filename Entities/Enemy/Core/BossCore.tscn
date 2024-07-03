@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://Entities/Enemy/Core/EnemyCore.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/Enemy/Core/BossCore.gd" type="Script" id=2]
+
+[node name="BossCore" groups=["Boss"] instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+hit_points_base = 28
+invincible_enabled = true
+pickups_drop_enabled = false
+intro_music = null
+boss_music = null
+start_music_on_spawn = true
+stop_player_controls_on_spawn = true
+die_to_pits = true
+show_boss_health_bar = true
+fill_up_health_bar_duration = 2.0
+stop_music_after_death = false
+destroy_all_enemies_on_death = true
+vital_bar_primary_color = 0
+vital_bar_secondary_color = 0
+vital_bar_outline_color = 0
+
+[node name="SpriteMain" parent="." index="0"]
+visible = false
+
+[connection signal="slain" from="." to="." method="_on_BossCore_slain"]
+[connection signal="taken_damage" from="." to="." method="_on_BossCore_taken_damage"]

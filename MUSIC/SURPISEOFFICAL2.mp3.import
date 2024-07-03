@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/SURPISEOFFICAL2.mp3-2eb258d6ad3486a0a05e9182844f2a92.mp3str"
+
+[deps]
+
+source_file="res://MUSIC/SURPISEOFFICAL2.mp3"
+dest_files=[ "res://.import/SURPISEOFFICAL2.mp3-2eb258d6ad3486a0a05e9182844f2a92.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

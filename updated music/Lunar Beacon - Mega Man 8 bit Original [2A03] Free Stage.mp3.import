@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Lunar Beacon - Mega Man 8 bit Original [2A03] Free Stage.mp3-e3f036a4162ae01d9b6b81f1bef31f11.mp3str"
+
+[deps]
+
+source_file="res://updated music/Lunar Beacon - Mega Man 8 bit Original [2A03] Free Stage.mp3"
+dest_files=[ "res://.import/Lunar Beacon - Mega Man 8 bit Original [2A03] Free Stage.mp3-e3f036a4162ae01d9b6b81f1bef31f11.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

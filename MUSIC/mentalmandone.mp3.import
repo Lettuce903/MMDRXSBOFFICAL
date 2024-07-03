@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/mentalmandone.mp3-6501dd378785a548973b59040398c4b6.mp3str"
+
+[deps]
+
+source_file="res://MUSIC/mentalmandone.mp3"
+dest_files=[ "res://.import/mentalmandone.mp3-6501dd378785a548973b59040398c4b6.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

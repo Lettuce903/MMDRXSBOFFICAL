@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/creditsfinal.mp3-cf3610378b6441274d0a7e19b8e45100.mp3str"
+
+[deps]
+
+source_file="res://MUSIC/creditsfinal.mp3"
+dest_files=[ "res://.import/creditsfinal.mp3-cf3610378b6441274d0a7e19b8e45100.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

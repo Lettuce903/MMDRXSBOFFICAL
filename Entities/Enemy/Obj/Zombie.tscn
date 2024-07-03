@@ -1,0 +1,299 @@
+[gd_scene load_steps=32 format=2]
+
+[ext_resource path="res://Entities/Enemy/Obj/Zombie.gd" type="Script" id=1]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemSet/ItemSetData/ItemSetData.gd" type="Script" id=2]
+[ext_resource path="res://Entities/Pickups/LifeEnergySmall.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/Pickups/WeaponEnergyLarge.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Entities/Pickups/LifeEnergyLarge.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Entities/Pickups/WeaponEnergySmall.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Entities/Pickups/Life.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Entities/Effects/Explosion/Explosion.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemSet/ItemSet.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemTable.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Assets/Sprites/Effects/Damage.png" type="Texture" id=11]
+[ext_resource path="res://Entities/Coin/Diamond1.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Lib/FJ_LibHelper/PlatformBehavior2D/PlatformBehavior2D.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Assets/Sprites/Enemies/Zombie.png" type="Texture" id=14]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 14 )
+region = Rect2( 32, 0, 32, 64 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 11, 32 )
+
+[sub_resource type="Animation" id=4]
+length = 0.2
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 3 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "jump"
+} ]
+}
+
+[sub_resource type="Animation" id=5]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ 4 ]
+}
+
+[sub_resource type="Animation" id=6]
+length = 0.9
+loop = true
+step = 0.12
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.24, 0.48, 0.72 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 0, 1, 2, 1 ]
+}
+
+[sub_resource type="Animation" id=14]
+length = 0.12
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=2]
+length = 0.08
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=15]
+resource_name = "NoLongerDamage"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="RectangleShape2D" id=16]
+extents = Vector2( 16, 32 )
+
+[sub_resource type="Resource" id=17]
+script = ExtResource( 2 )
+item = ""
+weight = 78
+quantity = 1
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 2 )
+item = "WeaponEnergySmall"
+weight = 25
+quantity = 1
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 2 )
+item = "LifeEnergySmall"
+weight = 15
+quantity = 1
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 2 )
+item = "WeaponEnergyLarge"
+weight = 5
+quantity = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 2 )
+item = "LifeEnergyLarge"
+weight = 4
+quantity = 1
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 2 )
+item = ""
+weight = 10
+quantity = 1
+
+[sub_resource type="Animation" id=11]
+length = 0.06
+loop = true
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="Zombie" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 0
+collision_mask = 65
+script = ExtResource( 1 )
+sprite_preview_texture = SubResource( 19 )
+damage_area_nodes = [ NodePath("FlipX/DamageArea") ]
+explosion_effect = ExtResource( 8 )
+contact_damage = 2.0
+hit_points_base = 10
+repel_power = 310
+DEATH_SHAKE_STRENGTH = 10
+PERMA_DEATH_LEVEL = true
+pickup_obj_weapon_large = ExtResource( 4 )
+pickup_obj_weapon_small = ExtResource( 6 )
+pickup_obj_life_large = ExtResource( 5 )
+pickup_obj_life_small = ExtResource( 3 )
+pickup_obj_life = ExtResource( 7 )
+special_obj_item = ExtResource( 12 )
+
+[node name="PlatformBehavior" parent="." instance=ExtResource( 13 )]
+WALK_SPEED = 110.0
+JUMP_SPEED = 180.0
+VELOCITY_X_DAMPING = 1.0
+
+[node name="WalkTowardPlayerTimer" type="Timer" parent="."]
+process_mode = 0
+wait_time = 1.5
+autostart = true
+
+[node name="FlipX" type="Node2D" parent="."]
+
+[node name="DamageArea" type="Area2D" parent="FlipX"]
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="FlipX/DamageArea"]
+shape = SubResource( 3 )
+
+[node name="SpriteMain" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpriteMain"]
+texture = ExtResource( 14 )
+hframes = 5
+frame = 2
+
+[node name="SpriteAnimation" type="AnimationPlayer" parent="SpriteMain/Sprite"]
+autoplay = "Walking"
+anims/Hopping = SubResource( 4 )
+anims/Jumping = SubResource( 5 )
+anims/Walking = SubResource( 6 )
+
+[node name="FlickerAnimationPlayer" type="AnimationPlayer" parent="SpriteMain"]
+anims/Damage = SubResource( 14 )
+anims/Damage_Loop = SubResource( 2 )
+anims/NoLongerDamage = SubResource( 15 )
+
+[node name="PlatformCollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource( 16 )
+
+[node name="ActiveVisNotifier" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -4.76837e-07, -0.999999 )
+scale = Vector2( 3.2, 3.1 )
+rect = Rect2( -8, -8, 16, 16 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+pause_animations = false
+freeze_bodies = false
+pause_particles = false
+pause_animated_sprites = false
+
+[node name="PickupsDropSet" parent="." instance=ExtResource( 9 )]
+items = [ SubResource( 17 ), SubResource( 18 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 13 ) ]
+
+[node name="InvisTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="DamageSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 11 )
+
+[node name="Ani" type="AnimationPlayer" parent="DamageSprite"]
+anims/Flashing = SubResource( 11 )
+anims/StopFlashing = SubResource( 12 )
+
+[node name="ItemTable" parent="." instance=ExtResource( 10 )]
+
+[connection signal="slain" from="." to="." method="_on_Zombie_slain"]
+[connection signal="by_wall" from="PlatformBehavior" to="." method="_on_PlatformerBehavior_by_wall"]
+[connection signal="landed" from="PlatformBehavior" to="." method="_on_PlatformerBehavior_landed"]
+[connection signal="timeout" from="WalkTowardPlayerTimer" to="." method="_on_WalkTowardPlayerTimer_timeout"]
+[connection signal="screen_exited" from="ActiveVisNotifier" to="." method="_on_ActiveVisNotifier_screen_exited"]
+[connection signal="timeout" from="InvisTimer" to="." method="_on_InvisTimer_timeout"]

@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/RAJINOFFICAL.mp3-2f221335773da826304658306374e624.mp3str"
+
+[deps]
+
+source_file="res://MUSIC/RAJINOFFICAL.mp3"
+dest_files=[ "res://.import/RAJINOFFICAL.mp3-2f221335773da826304658306374e624.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

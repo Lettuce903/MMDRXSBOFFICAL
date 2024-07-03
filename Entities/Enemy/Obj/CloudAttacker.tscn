@@ -1,0 +1,310 @@
+[gd_scene load_steps=28 format=2]
+
+[ext_resource path="res://Entities/Enemy/Obj/CloudAttacker.gd" type="Script" id=1]
+[ext_resource path="res://Entities/Effects/100WattonSmokeEffect/100WattonSmokeEffect.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Lib/FJ_LibHelper/PlatformBehavior2D/PlatformBehavior2D.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Entities/ProjectileReflector/ProjectileReflector.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemTable.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemSet/ItemSet.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Lib/FJ_LibHelper/ItemTable/ItemSet/ItemSetData/ItemSetData.gd" type="Script" id=13]
+[ext_resource path="res://Assets/Sprites/Enemies/Cloudattackersprite.png" type="Texture" id=14]
+[ext_resource path="res://Assets/Sprites/Effects/Damage.png" type="Texture" id=15]
+
+[sub_resource type="AtlasTexture" id=19]
+atlas = ExtResource( 14 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 14 )
+region = Rect2( 96, 0, 32, 32 )
+
+[sub_resource type="Animation" id=2]
+length = 0.12
+loop = true
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.06 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 3, 4 ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath(".:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.04, 0.09 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ Vector2( 0, 0 ), Vector2( 0, -1 ) ]
+}
+
+[sub_resource type="Animation" id=3]
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.05, 0.1, 0.15, 0.2 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 2, 1, 0, 1, 2 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath("../..")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.15, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [  ],
+"method": "flip_sprite"
+}, {
+"args": [  ],
+"method": "start_moving"
+} ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("../ShieldArea2D/ProjectileReflector:enabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.2 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 2, 15 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 2, 15 )
+
+[sub_resource type="Animation" id=1]
+length = 0.12
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04, 0.08, 0.12 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ false, true, false, true ]
+}
+
+[sub_resource type="Animation" id=15]
+length = 0.08
+loop = true
+step = 0.02
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.04 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[sub_resource type="Animation" id=16]
+resource_name = "NoLongerDamage"
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+
+[sub_resource type="RectangleShape2D" id=17]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Resource" id=18]
+script = ExtResource( 13 )
+item = ""
+weight = 78
+quantity = 1
+
+[sub_resource type="Resource" id=6]
+script = ExtResource( 13 )
+item = "WeaponEnergySmall"
+weight = 25
+quantity = 1
+
+[sub_resource type="Resource" id=7]
+script = ExtResource( 13 )
+item = "LifeEnergySmall"
+weight = 15
+quantity = 1
+
+[sub_resource type="Resource" id=8]
+script = ExtResource( 13 )
+item = "WeaponEnergyLarge"
+weight = 5
+quantity = 1
+
+[sub_resource type="Resource" id=9]
+script = ExtResource( 13 )
+item = "LifeEnergyLarge"
+weight = 4
+quantity = 1
+
+[sub_resource type="Resource" id=13]
+script = ExtResource( 13 )
+item = ""
+weight = 10
+quantity = 1
+
+[sub_resource type="Animation" id=11]
+length = 0.06
+loop = true
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+
+[sub_resource type="Animation" id=12]
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+
+[node name="CloudAttacker" type="KinematicBody2D" groups=["Enemy"]]
+collision_layer = 0
+script = ExtResource( 1 )
+sprite_preview_texture = SubResource( 19 )
+damage_area_nodes = [ NodePath("SpriteMain/DamageArea2D"), NodePath("SpriteMain/ShieldArea2D") ]
+explosion_effect = ExtResource( 2 )
+hit_points_base = 5
+DEATH_SHAKE_STRENGTH = 15
+pickups_drop_enabled = false
+
+[node name="PlatformBehavior" parent="." instance=ExtResource( 3 )]
+move_type = 1
+GRAVITY_VEC = Vector2( -120, 0 )
+
+[node name="SpritePreview" type="Sprite" parent="."]
+visible = false
+texture = SubResource( 14 )
+
+[node name="SpriteMain" type="Node2D" parent="."]
+
+[node name="Sprite" type="Sprite" parent="SpriteMain"]
+texture = ExtResource( 14 )
+offset = Vector2( 0, -1 )
+hframes = 5
+frame = 2
+
+[node name="ShieldAni" type="AnimationPlayer" parent="SpriteMain/Sprite"]
+autoplay = "Moving"
+anims/Moving = SubResource( 2 )
+anims/Turning = SubResource( 3 )
+
+[node name="ShieldArea2D" type="Area2D" parent="SpriteMain"]
+position = Vector2( -8, -1 )
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteMain/ShieldArea2D"]
+shape = SubResource( 4 )
+
+[node name="ProjectileReflector" parent="SpriteMain/ShieldArea2D" instance=ExtResource( 5 )]
+enabled = false
+
+[node name="DamageArea2D" type="Area2D" parent="SpriteMain"]
+position = Vector2( 8, -1 )
+collision_layer = 8
+collision_mask = 6
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="SpriteMain/DamageArea2D"]
+shape = SubResource( 5 )
+
+[node name="FlickerAnimationPlayer" type="AnimationPlayer" parent="SpriteMain"]
+anims/Damage = SubResource( 1 )
+anims/Damage_Loop = SubResource( 15 )
+anims/NoLongerDamage = SubResource( 16 )
+
+[node name="PlatformCollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, -1 )
+shape = SubResource( 17 )
+
+[node name="ActiveVisNotifier" type="VisibilityNotifier2D" parent="."]
+visible = false
+position = Vector2( -4.76837e-07, -0.999999 )
+scale = Vector2( 3.2, 3.1 )
+rect = Rect2( -8, -8, 16, 16 )
+
+[node name="VisibilityEnabler2D" type="VisibilityEnabler2D" parent="."]
+visible = false
+pause_animations = false
+freeze_bodies = false
+pause_particles = false
+pause_animated_sprites = false
+
+[node name="PickupsDropSet" parent="." instance=ExtResource( 11 )]
+items = [ SubResource( 18 ), SubResource( 6 ), SubResource( 7 ), SubResource( 8 ), SubResource( 9 ), SubResource( 13 ) ]
+
+[node name="InvisTimer" type="Timer" parent="."]
+wait_time = 0.8
+one_shot = true
+
+[node name="DamageSprite" type="Sprite" parent="."]
+visible = false
+texture = ExtResource( 15 )
+
+[node name="Ani" type="AnimationPlayer" parent="DamageSprite"]
+anims/Flashing = SubResource( 11 )
+anims/StopFlashing = SubResource( 12 )
+
+[node name="ItemTable" parent="." instance=ExtResource( 8 )]
+
+[connection signal="move_and_collided" from="PlatformBehavior" to="." method="_on_PlatformerBehavior_move_and_collided"]
+[connection signal="screen_exited" from="ActiveVisNotifier" to="." method="_on_ActiveVisNotifier_screen_exited"]
+[connection signal="timeout" from="InvisTimer" to="." method="_on_InvisTimer_timeout"]

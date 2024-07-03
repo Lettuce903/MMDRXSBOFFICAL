@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/Blazing Might - Mega Man 8 bit Original [2A03] Free Stage.mp3-a84c94ca55ebb3e81de6df9f185593ea.mp3str"
+
+[deps]
+
+source_file="res://updated music/Blazing Might - Mega Man 8 bit Original [2A03] Free Stage.mp3"
+dest_files=[ "res://.import/Blazing Might - Mega Man 8 bit Original [2A03] Free Stage.mp3-a84c94ca55ebb3e81de6df9f185593ea.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

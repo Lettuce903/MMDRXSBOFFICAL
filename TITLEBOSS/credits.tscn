@@ -1,0 +1,40 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://DXSB_Credits_GD.ogv" type="VideoStream" id=1]
+[ext_resource path="res://TITLEBOSS/credits.gd" type="Script" id=4]
+[ext_resource path="res://GUI/FadeScreen/FadeScreen.tscn" type="PackedScene" id=5]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+length = 65.4
+
+[sub_resource type="Animation" id=2]
+length = 0.001
+
+[node name="Node2D" type="Node2D"]
+script = ExtResource( 4 )
+
+[node name="VideoPlayer" type="VideoPlayer" parent="."]
+margin_left = -50.0
+margin_right = 310.0
+margin_bottom = 259.0
+stream = ExtResource( 1 )
+autoplay = true
+
+[node name="FadeScreen" parent="." instance=ExtResource( 5 )]
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
+anims/RESET = SubResource( 2 )
+
+[node name="Node2D" type="Node2D" parent="."]
+z_index = -1
+
+[node name="ColorRect" type="ColorRect" parent="Node2D"]
+margin_right = 256.0
+margin_bottom = 224.0
+color = Color( 0, 0, 0, 1 )
+
+[connection signal="fading_finished" from="FadeScreen" to="." method="_on_FadeScreen_fading_finished"]
+[connection signal="animation_finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_animation_finished"]

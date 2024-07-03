@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/OFFICIALBLOODMAN.mp3-64ae8b961fd2f8f844a3ae7b691d1e0b.mp3str"
+
+[deps]
+
+source_file="res://MUSIC/OFFICIALBLOODMAN.mp3"
+dest_files=[ "res://.import/OFFICIALBLOODMAN.mp3-64ae8b961fd2f8f844a3ae7b691d1e0b.mp3str" ]
+
+[params]
+
+loop=true
+loop_offset=0

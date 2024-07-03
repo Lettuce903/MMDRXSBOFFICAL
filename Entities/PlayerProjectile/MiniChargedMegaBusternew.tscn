@@ -1,0 +1,78 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Lib/FJ_LibHelper/BulletBehavior2D/BulletBehavior2D.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Entities/PlayerProjectile/PlayerProjectileCore.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Sprites/Projectiles/ChargedMegaBuster1new.png" type="Texture" id=3]
+
+[sub_resource type="Animation" id=1]
+resource_name = "New Anim"
+length = 0.16
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.08 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 0, 1 ]
+}
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 8 )
+
+[sub_resource type="Animation" id=3]
+resource_name = "Reflected"
+length = 0.06
+loop = true
+step = 0.03
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.03 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ false, true ]
+}
+
+[node name="MiniChargedMegaBuster" type="Area2D" groups=["PlayerProjectile"]]
+collision_layer = 4
+collision_mask = 91
+script = ExtResource( 2 )
+DAMAGE_POWER = 1
+DESTROY_ON_COLLIDE_TYPE = 1
+
+[node name="BulletBehavior" parent="." instance=ExtResource( 1 )]
+speed = 300.0
+
+[node name="Sprite" type="Sprite" parent="."]
+texture = ExtResource( 3 )
+hframes = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Sprite"]
+autoplay = "New Anim"
+"anims/New Anim" = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 2 )
+
+[node name="VisibilityNotifier2D" type="VisibilityNotifier2D" parent="."]
+visible = false
+rect = Rect2( -16, -16, 32, 32 )
+
+[node name="ReflectedDestroyTimer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[node name="ReflectAnimation" type="AnimationPlayer" parent="."]
+anims/Reflected = SubResource( 3 )
+
+[connection signal="timeout" from="ReflectedDestroyTimer" to="." method="queue_free_start"]
